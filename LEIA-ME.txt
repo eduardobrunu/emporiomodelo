@@ -1,0 +1,69 @@
+🧀🍷 INSTRUÇÕES PARA ADICIONAR IMAGENS 🍷🧀
+==========================================
+
+Para o site funcionar perfeitamente, você precisa adicionar as seguintes imagens:
+
+📁 PASTA: images/
+------------------
+1. logo.png
+   - Logo do Empório Modelo (circular preferencial)
+   - Tamanho recomendado: 200x200px
+   - Formato: PNG com fundo transparente
+
+2. hero-bg.jpg
+   - Imagem de fundo para o topo do site
+   - Tamanho recomendado: 1920x1080px
+   - Sugestão: Foto de produtos, queijos, vinhos ou ambiente da loja
+
+3. loja.jpg
+   - Foto da loja ou produtos (seção "Sobre Nós")
+   - Tamanho recomendado: 1200x800px
+
+
+📁 PASTA: images/produtos/
+---------------------------
+4. queijos.jpg - Foto de queijos artesanais
+5. vinhos.jpg - Foto de garrafas de vinho
+6. massas.jpg - Foto de massas artesanais
+7. graos.jpg - Foto de grãos e frutas secas
+8. embutidos.jpg - Foto de embutidos (presuntos, salames)
+9. chocolates.jpg - Foto de chocolates finos
+10. conservas.jpg - Foto de geleias, patês e conservas
+11. azeites.jpg - Foto de azeites e temperos
+
+Tamanho recomendado: 800x600px
+Formato: JPG
+
+
+📁 PASTA: images/galeria/
+--------------------------
+12. img1.jpg até img8.jpg
+    - 8 fotos variadas de produtos ou da loja
+    - Tamanho recomendado: 800x600px
+    - Formato: JPG
+
+
+💡 DICAS:
+---------
+✓ Use fotos de alta qualidade
+✓ Otimize o tamanho dos arquivos (máx 500KB por imagem)
+✓ Prefira JPG para fotos e PNG para logos
+✓ Mantenha os nomes dos arquivos exatamente como indicado
+✓ Use as fotos que você tem do Instagram do @emporio.modelo
+
+
+🔧 ONDE CONSEGUIR AS IMAGENS:
+------------------------------
+1. Instagram do Empório Modelo (@emporio.modelo)
+2. Fotos tiradas na loja
+3. Banco de imagens gratuitas (caso precise de complementares):
+   - Unsplash.com
+   - Pexels.com
+
+
+⚠️ IMPORTANTE:
+---------------
+Se não tiver todas as imagens agora, o site ainda funcionará,
+mas as imagens aparecerão como quebradas (ícone de imagem não encontrada).
+
+Adicione as imagens gradualmente conforme você as obtém.

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Empório Modelo - Queijos, Vinhos, Grãos e Produtos Importados em Presidente Prudente">
+    <meta name="keywords" content="empório, queijos, vinhos, produtos importados, gourmet, presidente prudente, mercado municipal">
+    <!-- Metatags adicionais para SEO e compartilhamento -->
+    <meta name="author" content="Empório Modelo">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Empório Modelo">
+    <meta property="og:title" content="Empório Modelo - Produtos Gourmet Premium">
+    <meta property="og:description" content="Queijos, vinhos, grãos, massas e produtos importados selecionados com qualidade premium em Presidente Prudente.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/loja.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Ajuste a canonical abaixo quando publicar em GitHub Pages -->
+    <!-- <link rel="canonical" href="https://SEU_USUARIO.github.io/emporiomodelo/"> -->
+    <title>Empório Modelo - Queijos, Vinhos e Produtos Gourmet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="Empório Modelo Logo" loading="lazy">
+                        <span>Empório Modelo</span>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                    <div class="nav-contact">
+                        <a href="tel:1832233916" class="btn-phone">
+                            <i class="fas fa-phone"></i> (18) 3223-3916
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Empório Modelo</h1>
+            <p class="hero-subtitle">Queijos, Vinhos, Grãos e Produtos Importados</p>
+            <p class="hero-description">Qualidade premium em cada produto selecionado</p>
+            <div class="hero-buttons">
+                <a href="#produtos" class="btn btn-primary">Conheça Nossos Produtos</a>
+                <a href="https://wa.me/5518996188331" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> Fale Conosco
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#produtos">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="highlights">
+        <div class="container">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <i class="fas fa-star"></i>
+                    <h3>Produtos Premium</h3>
+                    <p>Seleção especial de produtos nacionais e importados</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Atendimento Personalizado</h3>
+                    <p>Equipe especializada para melhor atendê-lo</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Localização Privilegiada</h3>
+                    <p>Mercado Municipal - Box 14</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Qualidade Garantida</h3>
+                    <p>Produtos selecionados com rigor e excelência</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="produtos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos Produtos</h2>
+                <p>Explore nossa seleção exclusiva de produtos gourmet</p>
+            </div>
+
+            <div class="produtos-categories">
+                <button class="category-btn active" data-category="todos">Todos</button>
+                <button class="category-btn" data-category="queijos">Queijos</button>
+                <button class="category-btn" data-category="vinhos">Vinhos</button>
+                <button class="category-btn" data-category="massas">Massas</button>
+                <button class="category-btn" data-category="graos">Grãos & Frutas Secas</button>
+                <button class="category-btn" data-category="embutidos">Embutidos</button>
+                <button class="category-btn" data-category="outros">Outros</button>
+            </div>
+
+            <div class="produtos-grid">
+                <!-- Queijos -->
+                <div class="produto-card" data-category="queijos">
+                    <div class="produto-image">
+                        <img src="images/produtos/queijos.jpg" alt="Queijos Premium" loading="lazy">
+                        <span class="produto-badge">Premium</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Queijos Artesanais</h3>
+                        <p>Seleção especial de queijos nacionais e importados</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Queijos Artesanais">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vinhos -->
+                <div class="produto-card" data-category="vinhos">
+                    <div class="produto-image">
+                        <img src="images/produtos/vinhos.jpg" alt="Vinhos Selecionados" loading="lazy">
+                        <span class="produto-badge">Importado</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Vinhos Selecionados</h3>
+                        <p>As melhores vinícolas nacionais e internacionais</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Vinhos Selecionados">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Massas -->
+                <div class="produto-card" data-category="massas">
+                    <div class="produto-image">
+                        <img src="images/produtos/massas.jpg" alt="Massas Artesanais" loading="lazy">
+                        <span class="produto-badge">Artesanal</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Massas Artesanais</h3>
+                        <p>La Pastina, Mascarpone e outras marcas premium</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Massas Artesanais">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grãos e Frutas Secas -->
+                <div class="produto-card" data-category="graos">
+                    <div class="produto-image">
+                        <img src="images/produtos/graos.jpg" alt="Grãos e Frutas Secas" loading="lazy">
+                        <span class="produto-badge">Natural</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Grãos & Frutas Secas</h3>
+                        <p>Nozes, amêndoas, damascos, cranberry e muito mais</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Grãos & Frutas Secas">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Embutidos -->
+                <div class="produto-card" data-category="embutidos">
+                    <div class="produto-image">
+                        <img src="images/produtos/embutidos.jpg" alt="Embutidos Premium" loading="lazy">
+                        <span class="produto-badge">Premium</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Embutidos Premium</h3>
+                        <p>Presuntos, salames e produtos curados selecionados</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Embutidos Premium">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chocolates -->
+                <div class="produto-card" data-category="outros">
+                    <div class="produto-image">
+                        <img src="images/produtos/chocolates.jpg" alt="Chocolates Finos" loading="lazy">
+                        <span class="produto-badge">Gourmet</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Chocolates Finos</h3>
+                        <p>Seleção de chocolates artesanais e importados</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Chocolates Finos">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conservas -->
+                <div class="produto-card" data-category="outros">
+                    <div class="produto-image">
+                        <img src="images/produtos/conservas.jpg" alt="Conservas e Patês" loading="lazy">
+                        <span class="produto-badge">Artesanal</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Conservas & Patês</h3>
+                        <p>Geleias, patês e conservas gourmet</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Conservas & Patês">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Azeites e Temperos -->
+                <div class="produto-card" data-category="outros">
+                    <div class="produto-image">
+                        <img src="images/produtos/azeites.jpg" alt="Azeites e Temperos" loading="lazy">
+                        <span class="produto-badge">Importado</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Azeites & Temperos</h3>
+                        <p>Especiarias, azeites extra-virgem e condimentos</p>
+                        <div class="produto-actions">
+                            <button class="btn-adicionar" data-produto="Azeites & Temperos">
+                                <i class="fas fa-plus"></i> Adicionar à Lista
+                            </button>
+                            <a href="https://wa.me/5518996188331" class="btn-contato-sm">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="sobre-content">
+                <div class="sobre-image">
+                    <img src="images/loja.jpg" alt="Empório Modelo - Loja" loading="lazy">
+                </div>
+                <div class="sobre-text">
+                    <h2>Sobre o Empório Modelo</h2>
+                    <p class="sobre-intro">Tradição e qualidade em produtos gourmet</p>
+                    <p>O <strong>Empório Modelo</strong> é referência em Presidente Prudente quando o assunto é qualidade e variedade em produtos gourmet. Localizado no coração do Mercado Municipal, oferecemos uma seleção cuidadosa de queijos, vinhos, grãos, massas artesanais e produtos nacionais e importados.</p>
+                    <p>Nossa missão é proporcionar aos nossos clientes uma experiência única, com produtos de excelência e atendimento personalizado. Cada item é escolhido com rigor para garantir o melhor da gastronomia nacional e internacional.</p>
+                    
+                    <div class="sobre-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Produtos selecionados</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Atendimento especializado</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tradição e qualidade</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Produtos importados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="galeria">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galeria de Produtos</h2>
+                <p>Conheça nosso ambiente e produtos</p>
+            </div>
+            <div class="galeria-grid">
+                <div class="galeria-item"><img src="images/galeria/img1.jpg" alt="Produtos Empório Modelo 1" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img2.jpg" alt="Produtos Empório Modelo 2" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img3.jpg" alt="Produtos Empório Modelo 3" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img4.jpg" alt="Produtos Empório Modelo 4" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img5.jpg" alt="Produtos Empório Modelo 5" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img6.jpg" alt="Produtos Empório Modelo 6" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img7.jpg" alt="Produtos Empório Modelo 7" loading="lazy"></div>
+                <div class="galeria-item"><img src="images/galeria/img8.jpg" alt="Produtos Empório Modelo 8" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <p>Visite nossa loja ou fale conosco</p>
+            </div>
+            <div class="contato-wrapper">
+                <div class="contato-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Endereço</h3>
+                            <p>Mercado Municipal de Presidente Prudente<br>Box 14<br>Presidente Prudente - SP</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefone</h3>
+                            <p><a href="tel:1832233916">(18) 3223-3916</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/5518996188331" target="_blank">Clique para conversar</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p><a href="https://instagram.com/emporio.modelo" target="_blank">@emporio.modelo</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://instagram.com/emporio.modelo" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5518996188331" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="contato-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3694.8!2d-51.3892!3d-22.1258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDA3JzMyLjkiUyA1McKwMjMnMjEuMSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Empório Modelo</h3>
+                    <p>Queijos, vinhos, grãos e produtos gourmet selecionados especialmente para você.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 17h<br>Domingo: Fechado</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>📍 Mercado Municipal - Box 14<br>📞 (18) 3223-3916<br>📱 WhatsApp disponível</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Empório Modelo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Flutuante -->
+    <div class="carrinho-float" id="carrinhoFloat">
+        <div class="carrinho-header">
+            <h3><i class="fas fa-shopping-basket"></i> Minha Lista</h3>
+            <button class="carrinho-toggle" id="carrinhoToggle">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+        <div class="carrinho-content" id="carrinhoContent">
+            <div class="carrinho-items" id="carrinhoItems">
+                <p class="carrinho-vazio">Nenhum produto adicionado</p>
+            </div>
+            <div class="carrinho-actions">
+                <button class="btn-limpar" id="btnLimpar">
+                    <i class="fas fa-trash"></i> Limpar Lista
+                </button>
+                <button class="btn-enviar-whats" id="btnEnviarWhats">
+                    <i class="fab fa-whatsapp"></i> Enviar para WhatsApp
+                </button>
+            </div>
+        </div>
+        <div class="carrinho-badge" id="carrinhoBadge">0</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
