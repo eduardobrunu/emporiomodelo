@@ -121,12 +121,10 @@ function limparCarrinho() {
     salvarCarrinho();
     atualizarCarrinho();
     mostrarNotificacao('Lista limpa com sucesso!');
-    
+
     // Fechar carrinho automaticamente
     setTimeout(() => {
-        carrinhoContent.classList.remove('show');
-        const icon = carrinhoToggle.querySelector('i');
-        icon.className = 'fas fa-chevron-down';
+        minimizarCarrinho();
     }, 800);
 }
 
@@ -155,21 +153,30 @@ function enviarParaWhatsApp() {
     
     // Fechar carrinho após 1 segundo
     setTimeout(() => {
-        carrinhoContent.classList.remove('show');
-        const icon = carrinhoToggle.querySelector('i');
-        icon.className = 'fas fa-chevron-down';
+        minimizarCarrinho();
     }, 1000);
     
     // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
 }
 
-// Mostrar notificação
+// Mostrar notificação com animação melhorada
 function mostrarNotificacao(texto) {
+    // Remover notificação existente se houver
+    const existente = document.querySelector('.notificacao');
+    if (existente) {
+        existente.remove();
+    }
+    
     const notif = document.createElement('div');
     notif.className = 'notificacao';
     notif.innerHTML = texto;
     document.body.appendChild(notif);
+    
+    // Vibração sutil no celular
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
     
     setTimeout(() => {
         notif.classList.add('show');
@@ -177,8 +184,8 @@ function mostrarNotificacao(texto) {
     
     setTimeout(() => {
         notif.classList.remove('show');
-        setTimeout(() => notif.remove(), 300);
-    }, 2000);
+        setTimeout(() => notif.remove(), 400);
+    }, 2500);
 }
 
 // Toggle carrinho
@@ -189,6 +196,39 @@ carrinhoToggle.addEventListener('click', () => {
         icon.className = 'fas fa-chevron-up';
     } else {
         icon.className = 'fas fa-chevron-down';
+    }
+});
+
+// Função utilitária para minimizar o carrinho
+function minimizarCarrinho() {
+    if (!carrinhoContent.classList.contains('show')) return;
+    carrinhoContent.classList.remove('show');
+    const icon = carrinhoToggle.querySelector('i');
+    if (icon) icon.className = 'fas fa-chevron-down';
+}
+
+// Minimizar ao clicar fora do carrinho
+document.addEventListener('click', (e) => {
+    const clicouDentro = carrinhoFloat.contains(e.target);
+    const clicouNoToggle = e.target.closest('#carrinhoToggle');
+    if (!clicouDentro && !clicouNoToggle) {
+        minimizarCarrinho();
+    }
+});
+
+// Minimizar ao rolar a página
+let _carrinhoScrollDebounce;
+window.addEventListener('scroll', () => {
+    if (!carrinhoContent.classList.contains('show')) return;
+    clearTimeout(_carrinhoScrollDebounce);
+    _carrinhoScrollDebounce = setTimeout(minimizarCarrinho, 150);
+});
+
+// Minimizar ao navegar por qualquer link
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+        minimizarCarrinho();
     }
 });
 
@@ -215,9 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
+// Backdrop do menu (mobile)
+const navBackdrop = document.createElement('div');
+navBackdrop.className = 'nav-backdrop';
+document.body.appendChild(navBackdrop);
 
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
+    navBackdrop.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
     
     // Animar ícone do menu
     const spans = menuToggle.querySelectorAll('span');
@@ -237,6 +283,8 @@ const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        navBackdrop.classList.remove('active');
+        document.body.style.overflow = 'auto';
         const spans = menuToggle.querySelectorAll('span');
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
@@ -244,23 +292,79 @@ navLinks.forEach(link => {
     });
 });
 
-// ========================================
-// SCROLL SUAVE E HEADER FIXO
-// ========================================
+// Fechar menu ao clicar no backdrop
+navBackdrop.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    navBackdrop.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    const spans = menuToggle.querySelectorAll('span');
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+});
 
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+// Fechar menu com ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        navBackdrop.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        const spans = menuToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
     }
 });
 
+// Clique no logo para ir ao topo (início)
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        minimizarCarrinho && minimizarCarrinho();
+        navMenu.classList.remove('active');
+        navBackdrop.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        const spans = menuToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    });
+}
+
 // ========================================
-// FILTRO DE PRODUTOS
+// SCROLL SUAVE E HEADER FIXO COM EFEITO
+// ========================================
+
+const header = document.querySelector('.header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Efeito de background ao scrollar
+    if (currentScroll > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    // Auto-hide header (opcional)
+    /*
+    if (currentScroll > lastScroll && currentScroll > 200) {
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        header.style.transform = 'translateY(0)';
+    }
+    */
+    
+    lastScroll = currentScroll;
+});
+
+// ========================================
+// FILTRO DE PRODUTOS COM ANIMAÇÃO SUAVE
 // ========================================
 
 const categoryButtons = document.querySelectorAll('.category-btn');
@@ -276,52 +380,66 @@ categoryButtons.forEach(button => {
         
         const category = button.getAttribute('data-category');
         
-        // Filtrar produtos
-        productCards.forEach(card => {
+        // Filtrar produtos com animação stagger
+        productCards.forEach((card, index) => {
             const cardCategory = card.getAttribute('data-category');
             
             if (category === 'todos' || cardCategory === category) {
-                card.style.display = 'block';
                 setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                }, 10);
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1) translateY(0)';
+                    }, 10);
+                }, index * 50); // Efeito cascata
             } else {
                 card.style.opacity = '0';
-                card.style.transform = 'scale(0.8)';
+                card.style.transform = 'scale(0.8) translateY(20px)';
                 setTimeout(() => {
                     card.style.display = 'none';
-                }, 300);
+                }, 400);
             }
         });
     });
 });
 
 // ========================================
-// ANIMAÇÃO AO SCROLL (FADE IN)
+// ANIMAÇÃO AO SCROLL (FADE IN) - MELHORADA
 // ========================================
 
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -80px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100); // Efeito cascata
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Elementos para animar
-const animateElements = document.querySelectorAll('.produto-card, .highlight-item, .galeria-item');
+const animateElements = document.querySelectorAll('.produto-card, .highlight-item, .galeria-item, .sobre-text, .info-item');
 animateElements.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(40px)';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     observer.observe(el);
+});
+
+// Parallax suave para hero
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const scrolled = window.pageYOffset;
+        hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+    }
 });
 
 // ========================================
@@ -449,13 +567,114 @@ function animateCounter(element, target, duration = 2000) {
 }
 
 // ========================================
-// MENSAGEM DE BOAS-VINDAS (OPCIONAL)
+// MENSAGEM DE BOAS-VINDAS E RECURSOS MODERNOS
 // ========================================
 
 window.addEventListener('load', () => {
-    console.log('%c🧀 Bem-vindo ao Empório Modelo! 🍷', 'font-size: 20px; color: #D4AF37; font-weight: bold;');
-    console.log('%cSite desenvolvido com ❤️', 'font-size: 14px; color: #666;');
+    console.log('%c🧀 Bem-vindo ao Empório Modelo! 🍷', 'font-size: 24px; color: #D4AF37; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+    console.log('%cSite desenvolvido com ❤️ e tecnologias modernas', 'font-size: 14px; color: #666;');
+    
+    // Loading suave
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.6s ease';
+        document.body.style.opacity = '1';
+    }, 100);
 });
+
+// ========================================
+// SMOOTH SCROLL PARA LINKS INTERNOS
+// ========================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#!') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// ========================================
+// CURSOR PERSONALIZADO (OPCIONAL - DESKTOP)
+// ========================================
+
+if (window.innerWidth > 768) {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.innerHTML = '<div class="cursor-inner"></div>';
+    document.body.appendChild(cursor);
+    
+    const cursorStyle = document.createElement('style');
+    cursorStyle.textContent = `
+        .custom-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cor-primaria);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0;
+        }
+        .custom-cursor.active {
+            opacity: 0.6;
+        }
+        .custom-cursor.hover {
+            transform: scale(1.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        .cursor-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--cor-primaria);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+    `;
+    document.head.appendChild(cursorStyle);
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.classList.add('active');
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+    });
+    
+    // Hover em elementos clicáveis
+    document.querySelectorAll('a, button, .produto-card, .galeria-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    
+    // Animação suave do cursor
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+}
 
 // ========================================
 // BOTÃO DE VOLTAR AO TOPO
@@ -492,8 +711,8 @@ const backToTopStyles = document.createElement('style');
 backToTopStyles.textContent = `
     .back-to-top {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
+        bottom: 100px;
+        right: 20px;
         width: 50px;
         height: 50px;
         background-color: #D4AF37;
@@ -507,7 +726,7 @@ backToTopStyles.textContent = `
         justify-content: center;
         opacity: 0;
         transition: all 0.3s ease;
-        z-index: 999;
+        z-index: 997;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
     
@@ -534,8 +753,8 @@ const whatsappStyles = document.createElement('style');
 whatsappStyles.textContent = `
     .whatsapp-float {
         position: fixed;
-        bottom: 90px;
-        right: 30px;
+        bottom: 20px;
+        right: 20px;
         width: 60px;
         height: 60px;
         background-color: #25D366;
@@ -546,7 +765,7 @@ whatsappStyles.textContent = `
         justify-content: center;
         font-size: 32px;
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        z-index: 999;
+        z-index: 997;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
     }
@@ -562,6 +781,24 @@ whatsappStyles.textContent = `
         }
         50% {
             box-shadow: 0 4px 25px rgba(37, 211, 102, 0.8);
+        }
+    }
+    
+    @media (max-width: 640px) {
+        .whatsapp-float {
+            bottom: 90px;
+            right: 15px;
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+        }
+        
+        .back-to-top {
+            bottom: 160px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
         }
     }
 `;
